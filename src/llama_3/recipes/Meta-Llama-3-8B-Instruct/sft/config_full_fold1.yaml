@@ -1,0 +1,41 @@
+# Model arguments
+model_name_or_path: /home/NETID/gramacha/projects/report_matcher/qanda/language-models/Meta-Llama-3-8B-Instruct/
+model_revision: main
+tokenizer_name_or_path: /home/NETID/gramacha/projects/report_matcher/qanda/language-models/Meta-Llama-3-8B-Instruct/
+torch_dtype: bfloat16
+use_flash_attention_2: true
+
+# Data training arguments
+dataset_mixer:
+  /home/NETID/gramacha/alignment-handbook/custom_dataset/train/fold_1/: 1.0
+dataset_splits:
+- train
+- test
+preprocessing_num_workers: 12
+
+# SFT trainer config
+bf16: true
+gradient_accumulation_steps: 1
+gradient_checkpointing: true
+gradient_checkpointing_kwargs:
+  use_reentrant: false
+learning_rate: 5.0e-05
+log_level: info
+logging_steps: 5
+logging_strategy: steps
+lr_scheduler_type: cosine
+max_seq_length: 2048
+max_steps: -1
+num_train_epochs: 10
+output_dir: /home/NETID/gramacha/alignment-handbook/custom_dataset/checkpoints/fold_1/
+overwrite_output_dir: true
+per_device_eval_batch_size: 4
+per_device_train_batch_size: 4
+push_to_hub: false
+remove_unused_columns: true
+report_to:
+- none
+save_strategy: "epoch"
+save_total_limit: 2
+seed: 42
+warmup_ratio: 0.1
