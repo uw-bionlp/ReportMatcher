@@ -28,8 +28,10 @@ Each model has a corresponding folder containing source code to train and valida
 Question:
 
 You are a board-certified radiologist.
+
 You will compare Report A and Report B. 
-Your goal is to check whether if Report B is a proper follow-up for Report A. 
+Your goal is to check whether if Report B is a proper follow-up for Report A.
+
 At the end of your answer, you should include "True" or "False".
 Your answer should be no longer than 5 sentences.
 
@@ -41,6 +43,7 @@ Answer
 Question:
 
 You are a board-certified radiologist.
+
 You will compare Report A and Report B mostly focusing on information
 from the sentence in Report A which explicitly suggests a follow-up examination.
 
