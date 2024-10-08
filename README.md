@@ -29,7 +29,8 @@ Each model has a corresponding folder containing source code to train and valida
 Question:
 You are a board-certified radiologist. You will compare Report A and Report B. 
 Your goal is to check whether if Report B is a proper follow-up for Report A 
-At the end of your answer, you should include "True" or "False". Your answer should be no longer than 5 sentences.
+At the end of your answer, you should include "True" or "False".
+Your answer should be no longer than 5 sentences.
 
 Answer
 ```
@@ -37,9 +38,12 @@ Answer
 ### Advanced Prompt
 ```
 Question:
-You are a board-certified radiologist. You will compare Report A and Report B mostly focusing on information from the sentence in Report A which explicitly suggests a follow-up examination.
+You are a board-certified radiologist. You will compare Report A and Report B mostly
+focusing on information from the sentence in Report A which explicitly suggests a follow-up examination.
 Your goal is to check whether Report B is a proper follow-up of Report A.
-While a proper follow-up does not always have to use the same imaging test, same day evaluations are not considered as a correct follow-up.
+
+While a proper follow-up does not always have to use the same imaging test,
+same day evaluations are not considered as a correct follow-up.
 
 Note: Modality types do not need to match the recommended imaging test, if it can still qualify as a substitute.
 
