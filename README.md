@@ -35,7 +35,7 @@ Your goal is to check whether if Report B is a proper follow-up for Report A.
 At the end of your answer, you should include "True" or "False".
 Your answer should be no longer than 5 sentences.
 
-Answer
+Answer:
 ```
 
 ### Advanced Prompt
