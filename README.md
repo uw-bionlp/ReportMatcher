@@ -26,6 +26,7 @@ Each model has a corresponding folder containing source code to train and valida
 ### Baseline Prompt
 ```
 Question:
+
 You are a board-certified radiologist.
 You will compare Report A and Report B. 
 Your goal is to check whether if Report B is a proper follow-up for Report A. 
@@ -38,6 +39,7 @@ Answer
 ### Advanced Prompt
 ```
 Question:
+
 You are a board-certified radiologist.
 You will compare Report A and Report B mostly focusing on information
 from the sentence in Report A which explicitly suggests a follow-up examination.
