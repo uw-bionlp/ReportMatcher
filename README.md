@@ -5,7 +5,7 @@
 ## Supervised models
 Each model has a corresponding folder containing source code to train and validate them.
 
-### SVM AND Logistic Regression
+### SVM and Logistic Regression
 - contains training and inference pipeline for SVM and LR
 - Configuration template embedded in the workbook needs to be modified to be suitable to the model to train and validate
 
@@ -16,7 +16,7 @@ Each model has a corresponding folder containing source code to train and valida
 - Meta-Llama-3-8B-Instruct was used for finetuning. 
 - Needs alignment-handbook 0.4.0.dev0 and trl 0.9.6  The changes in the respective folders must be integrated to run the finetuning and inference. 
 
-### LFBert
+### Longformer
 - LF_crossval_withtestset.py is the script for finetuning and validation
 - Threshold_tuning folder has a script and notebook to analyze the best threshold by the fold and visualize the results
 
