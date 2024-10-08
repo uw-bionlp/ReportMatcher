@@ -22,7 +22,8 @@ Each model has a corresponding folder containing source code to train and valida
 
 
 ## In-context learning using GPT-4
-- Prompts used in this paper and relevant inputs are described in the figure below (Details regarding GPT-4 experiments can be found in our paper)
+- Prompts used in this paper and relevant inputs are described in the figure below 
+ (Details regarding GPT-4 experiments can be found in our paper)
 
   
   ![figure2_v4](https://github.com/user-attachments/assets/6ff5a33d-d62b-4d40-915e-62909e6a3abc)
