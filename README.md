@@ -25,7 +25,7 @@ Each model has a corresponding folder containing source code to train and valida
 - Prompts used in this paper are described below
 
 ### Baseline Prompt
-
+'''
 **Question:**
 You are a board-certified radiologist. You will compare **Report A** and **Report B**. 
 
@@ -34,9 +34,9 @@ Your goal is to check whether **if Report B is a proper follow-up for Report A**
 At the end of your answer, you should include "True" or "False". Your answer should be no longer than 5 sentences.
 
 **Answer:**
-
+'''
 ### Advanced Prompt
-
+'''
 **Question:**
 You are a board-certified radiologist. You will compare **Report A** and **Report B** mostly focusing on information from the sentence in Report A which explicitly suggests a follow-up examination. Your goal is to check whether Report B is a proper follow-up of Report A. While a proper follow-up does not always have to use the same imaging test, same day evaluations are not considered as a correct follow-up.
 
@@ -47,7 +47,7 @@ After analyzing both reports, return a python list of two elements where you wil
 At the end of your answer, you should include the following output: [True, False]. Your answer should be no longer than 5 sentences.
 
 **Answer**: Let’s think step by step.
-
+'''
 
 ## Significance tests
 - The first step is to consolidate the results in a single table
