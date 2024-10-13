@@ -60,7 +60,7 @@ determine True or False for the following two issues respectively:
 
 1) Reasonable timeframe (ignore the recommended timeframe and make the decision
 based on your clinical expertise)
-2) Provide updates for the recommendation** from Report A.
+2) Provide updates for the recommendation from Report A.
 
 At the end of your answer, you should include the following output: [True, False].
 Your answer should be no longer than 5 sentences.
