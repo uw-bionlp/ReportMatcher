@@ -1,4 +1,4 @@
-# Identifying Imaging Follow-Up in Radiology Reports: A Comparative Analysis of Traditional ML and LLM Approaches (Acceptd at LREC 2026)
+# Identifying Imaging Follow-Up in Radiology Reports: A Comparative Analysis of Traditional ML and LLM Approaches (Accepted at LREC 2026)
 
 This project evaluates whether a candidate radiology report represents a proper follow-up to a prior index report using large language models.
 
