@@ -1,5 +1,53 @@
-# Report Matcher(paper under review)
+# Identifying Imaging Follow-Up in Radiology Reports: A Comparative Analysis of Traditional ML and LLM Approaches (Acceptd at LREC 2026)
 
+This project evaluates whether a candidate radiology report represents a proper follow-up to a prior index report using large language models.
+
+The task is framed as a structured clinical reasoning problem: given two radiology reports, determine whether the second report meaningfully addresses findings or recommendations from the first report.
+
+---
+
+## Task Definition
+
+**Input**
+- Report A, Index Report  
+- Report B, Candidate Report  
+
+**Output**
+
+```json
+{
+  "is_followup": 0 or 1,
+  "reasoning": "Concise evidence-based explanation"
+}
+```
+
+Where:
+
+- `is_followup = 1` → Report B properly follows up on Report A  
+- `is_followup = 0` → Report B is not a follow-up  
+- `reasoning` must:
+  - Be concise (≤ 5 sentences)
+  - Include direct excerpts from both reports
+  - Explicitly state whether findings or recommendations were addressed  
+
+---
+
+## Clinical Criteria for Follow-up
+
+A candidate report qualifies as a follow-up if it:
+
+- Addresses a recommendation from Report A  
+- Monitors previously described findings  
+- Performs additional imaging or evaluation suggested in Report A  
+- Evaluates a subset of findings tied to a prior recommendation  
+
+A report does **not** qualify if:
+
+- It focuses on unrelated anatomy or clinical concerns  
+- It ignores key findings or recommendations from Report A  
+- There is no clinical continuity between the reports  
+
+---
  /src: has the source code for the Supervised models
 
 ## Supervised models
@@ -21,52 +69,6 @@ Each model has a corresponding folder containing source code to train and valida
 - Threshold_tuning folder has a script and notebook to analyze the best threshold by the fold and visualize the results
 
 
-## In-context learning using GPT-4
-
-### Baseline Prompt
-```
-Question:
-
-You are a board-certified radiologist.
-
-You will compare Report A and Report B. 
-Your goal is to check whether if Report B is a proper follow-up for Report A.
-
-At the end of your answer, you should include "True" or "False".
-Your answer should be no longer than 5 sentences.
-
-Answer:
-```
-
-### Advanced Prompt
-```
-Question:
-
-You are a board-certified radiologist.
-
-You will compare Report A and Report B mostly focusing on information
-from the sentence in Report A which explicitly suggests a follow-up examination.
-
-Your goal is to check whether Report B is a proper follow-up of Report A.
-
-While a proper follow-up does not always have to use the same imaging test,
-same day evaluations are not considered as a correct follow-up.
-
-Note: Modality types do not need to match the recommended imaging test,
-if it can still qualify as a substitute.
-
-After analyzing both reports, return a python list of two elements where you will
-determine True or False for the following two issues respectively:
-
-1) Reasonable timeframe (ignore the recommended timeframe and make the decision
-based on your clinical expertise)
-2) Provide updates for the recommendation from Report A.
-
-At the end of your answer, you should include the following output: [True, False].
-Your answer should be no longer than 5 sentences.
-
-Answer: Let’s think step by step.
-```
 
 ## Significance tests
 - The first step is to consolidate the results in a single table
