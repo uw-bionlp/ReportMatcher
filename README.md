@@ -68,6 +68,103 @@ Each model has a corresponding folder containing source code to train and valida
 - LF_crossval_withtestset.py is the script for finetuning and validation
 - Threshold_tuning folder has a script and notebook to analyze the best threshold by the fold and visualize the results
 
+---
+
+# Prompt Configurations
+
+This project evaluates four prompt configurations for radiology follow-up identification.
+
+---
+
+## 1️⃣ Base Prompt for both GPT-4o and GPT-OSS-20B
+
+```text
+You are an expert AI assistant designed to support radiologists in their clinical decision-making processes.
+
+Your primary task is to compare two radiology reports, "Report A" and "Report B," to determine if Report B represents a proper follow-up to Report A.
+
+Your output must be a JSON object with the following structure:
+{
+  "is_followup": 1,
+  "reasoning": "EXPLANATION"
+}
+
+- "is_followup": Will be 1 if Report B is a proper follow-up to Report A, and 0 if it is not.
+- "reasoning": Must provide a concise, evidence-based explanation for your decision.
+
+This explanation must include direct excerpts from both Report A and Report B that specifically informed your conclusion.
+
+Highlight the key findings, recommendations, or concerns from Report A that are addressed, monitored, or further investigated in Report B.
+Conversely, if it's not a follow-up, explain why by pointing to the lack of connection or conflicting information.
+Explanation should not exceed 5 sentences.
+```
+
+---
+
+## 2️⃣ GPT-OSS-20B Additional Instruction (only added to GPT-OSS-20B prompt)
+
+```text
+Note that if any of the findings related to recommendation is addressed, it qualifies as a proper follow-up report.
+
+Report B may still qualify as a follow-up of Report A even though it addresses a subset of findings related to the recommendation.
+```
+
+This instruction is appended to the base prompt when evaluating GPT-OSS-20B.
+
+---
+
+## 3️⃣ Base Setting (Full Report Input)
+
+```text
+Input:
+- Full Index Report (with metadata)
+- Full Candidate Report (with metadata)
+
+Prompt:
+Use the GPT-4o Base Prompt (above).
+
+Output:
+{
+  "is_followup": 0 or 1,
+  "reasoning": "Concise evidence-based explanation with direct excerpts"
+}
+```
+
+**Observed Failure Mode:**
+The model tends to anchor on shared anatomical findings and may ignore explicit recommendation statements, leading to false-positive follow-up predictions.
+
+---
+
+## 4️⃣ Advanced Setting (Recommendation-Aware Prompting)
+
+```text
+Input:
+- Condensed Index Report:
+    - Metadata
+    - Recommendation sentence
+    - The sentence immediately preceding the recommendation
+- Full Candidate Report (with metadata)
+
+Prompt:
+Use the GPT-4o Base Prompt (above).
+Optionally append GPT-OSS-20B Additional Instruction.
+
+Output:
+{
+  "is_followup": 0 or 1,
+  "reasoning": "Concise evidence-based explanation with direct excerpts"
+}
+```
+
+**Key Difference:**
+The model is explicitly exposed to the actionable recommendation context rather than the entire Index Report.
+
+**Effect:**
+- Reduces anchoring on unrelated findings  
+- Increases attention to recommendation fulfillment  
+- Improves discrimination between true follow-up and incidental overlap  
+
+---
 
 
 ## Significance tests
