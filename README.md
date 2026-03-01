@@ -70,13 +70,13 @@ Each model has a corresponding folder containing source code to train and valida
 
 ---
 
-# Prompt Configurations
+## Prompt Configurations
 
 This project evaluates four prompt configurations for radiology follow-up identification.
 
 ---
 
-## 1️⃣ Base Prompt for both GPT-4o and GPT-OSS-20B
+### 1️⃣ Base Prompt for both GPT-4o and GPT-OSS-20B
 
 ```text
 You are an expert AI assistant designed to support radiologists in their clinical decision-making processes.
@@ -101,7 +101,7 @@ Explanation should not exceed 5 sentences.
 
 ---
 
-## 2️⃣ GPT-OSS-20B Additional Instruction (only added to GPT-OSS-20B prompt)
+### 2️⃣ GPT-OSS-20B Additional Instruction (only added to GPT-OSS-20B prompt)
 
 ```text
 Note that if any of the findings related to recommendation is addressed, it qualifies as a proper follow-up report.
@@ -113,7 +113,7 @@ This instruction is appended to the base prompt when evaluating GPT-OSS-20B.
 
 ---
 
-## 3️⃣ Base Setting (Full Report Input)
+### 3️⃣ Base Setting (Full Report Input)
 
 ```text
 Input:
@@ -129,13 +129,9 @@ Output:
   "reasoning": "Concise evidence-based explanation with direct excerpts"
 }
 ```
-
-**Observed Failure Mode:**
-The model tends to anchor on shared anatomical findings and may ignore explicit recommendation statements, leading to false-positive follow-up predictions.
-
 ---
 
-## 4️⃣ Advanced Setting (Recommendation-Aware Prompting)
+### 4️⃣ Advanced Setting (Recommendation-Aware Prompting)
 
 ```text
 Input:
